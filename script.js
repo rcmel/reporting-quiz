@@ -1,8 +1,15 @@
-document.getElementById('quizForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+function submitQuiz() {
+    const nameInput = document.getElementById('name');
+    const name = nameInput.value.trim();
+    console.log('Name:', name); // Check if name is correctly retrieved
 
-    // Correct answers
-    const correctAnswers = {
+    if (name === '') {
+        alert('Please enter your name.');
+        return;
+    }
+
+    // Define the correct answers
+    const answers = {
         q1: 'a',
         q2: 'b',
         q3: 'b',
@@ -18,22 +25,24 @@ document.getElementById('quizForm').addEventListener('submit', function(event) {
         q13: 'a',
         q14: 'b',
         q15: 'b'
+        // Add answers for additional questions here...
     };
 
     let score = 0;
-    let reportContent = '';
+    const form = document.getElementById('quizForm');
+    const resultDiv = document.getElementById('result');
 
-    // Iterate through each question
-    for (let question in correctAnswers) {
-        const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
-        if (selectedOption && selectedOption.value === correctAnswers[question]) {
+    // Check each question's answer
+    for (let [key, value] of Object.entries(answers)) {
+        const selectedOption = form.querySelector(`input[name=${key}]:checked`);
+        console.log('Selected option for', key, ':', selectedOption); // Check if selected options are retrieved
+        if (selectedOption && selectedOption.value === value) {
             score++;
         }
     }
 
-    // Generate report
-    reportContent = `You scored ${score} out of ${Object.keys(correctAnswers).length}.`;
+    // Display the score and the name
+    resultDiv.innerHTML = `<p>${name}, your score is ${score} out of ${Object.keys(answers).length}.</p>`;
+}
 
-    document.getElementById('reportContent').innerText = reportContent;
-    document.getElementById('report').style.display = 'block';
-});
+
