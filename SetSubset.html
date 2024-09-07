@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Theory Report</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 20px;
+            background-color: #2e2e2e;
+            /* Darker background color */
+            color: #ffffff;
+            /* Light text color for contrast */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            /* Darker header background */
+            color: #e0e0e0;
+            /* Light text color */
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #444;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3.5em;
+            color: #ffffff;
+            font-family: 'Georgia', serif; /* Serif font for title */
+            border-bottom: 2px solid #00bfff;
+        }
+        h3 {
+            color: #ffffff;
+            /* Bright blue color */
+            border-top: 2px solid #2e2e2e;
+            padding-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+
+        }
+        b {
+             font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 22px;
+            /* Darker background color */
+            color: #ffffff;
+            /* Light text color for contrast */
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #ffffff; /* Bright blue color */
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 700; /* Bold font weight */
+            font-size: 1.5em; /* Increased font size */
+            transition: color 0.3s, opacity 0.3s, text-decoration 0.3s; /* Smooth transition effect */
+        }
+        nav a:hover {
+            
+            text-decoration: underline; /* Underline when hovered */
+            opacity: 0.8; /* Slightly transparent effect */
+        }
+
+        section {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #444;
+            /* Darker section background */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        section h2 {
+            font-size: 2em;
+            /* Larger font size */
+            color: #00bfff;
+            /* Bright blue color */
+            border-bottom: 2px solid #00bfff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            /* Darker footer background */
+            color: #e0e0e0;
+            /* Light text color */
+            border-top: 1px solid #444;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        code {
+            background-color: #555;
+            /* Darker code background */
+            padding: 5px;
+            border-radius: 3px;
+            color: #00bfff;
+            /* Bright blue color */
+        }
+
+        .law-section {
+            margin-top: 20px;
+            padding: 15px;
+            border-left: 5px solid #00bfff;
+            /* Bright blue color */
+            background-color: #555;
+            /* Darker section background */
+        }
+
+        .law-section h3 {
+            color: #ffffff;
+            /* Bright blue color */
+            font-size: 1.5em;
+            /* Larger font size */
+            margin-bottom: 10px;
+        }
+
+        .law-section p {
+            font-size: 1em;
+            color: #e0e0e0;
+            /* Light text color */
+        }
+
+        #cantor {
+            background-color: #444;
+            /* Darker background color */
+            border-left: 5px solid #00bfff;
+            /* Bright blue color */
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        #cantor h2 {
+            color: #00bfff;
+            /* Bright blue color */
+            font-size: 2em;
+            /* Larger font size */
+            border-bottom: 2px solid #00bfff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        #cantor p {
+            font-size: 1em;
+            color: #e0e0e0;
+            /* Light text color */
+        }
+
+        #cantor img {
+            border-radius: 8px;
+            border: 2px solid #00bfff;
+            /* Bright blue color */
+            margin: 20px auto;
+            display: block;
+        }
+
+        .subset-info {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .subset-text {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .subset-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid #00bfff;
+            
+            /* Bright blue color */
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav a {
+                margin: 0 10px;
+            }
+
+            section {
+                margin: 10px;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            nav a {
+                display: block;
+                margin: 5px 0;
+                font-size: 1em;
+            }
+
+            section {
+                margin: 5px;
+                padding: 10px;
+            }
+        }
+          section form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #555;
+            /* Darker background color */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        section form h2 {
+            color: #00bfff; /* Bright blue color */
+            font-size: 1.5em; /* Slightly larger font size */
+            margin-bottom: 10px;
+        }
+
+        section form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ffffff; /* Light text color */
+        }
+
+        section form input[type="radio"] {
+            margin-right: 10px;
+            accent-color: #00bfff; /* Bright blue color */
+        }
+
+        section form button {
+            background-color: #00bfff; /* Bright blue background */
+            color: #ffffff; /* White text */
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        section form button:hover {
+            background-color: #007acc; /* Darker blue on hover */
+            transform: scale(1.05); /* Slightly larger on hover */
+        }
+
+        section form button:active {
+            background-color: #005999; /* Even darker blue when clicked */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>SETS AND SUBSETS</h1>
+        <nav>
+            <a href="#intro">Introduction</a>
+            <a href="#set-definitions">Set Definitions</a>
+            <a href="#operations">Set Operations</a>
+            <a href="#venn-diagram">Venn Diagram</a>
+            <a href="#laws-of-sets">Laws of Sets</a>
+        </nav>
+    </header>
+
+    <section id="intro">
+        <h2>Introduction to Set Theory</h2>
+        <p>
+            <strong>Set theory</strong> is a branch of mathematical logic that studies sets, which are collections of
+            objects. It was developed by the German mathematician <b>Georg Cantor</b>. Sets are fundamental objects in
+            mathematics and can represent anything from numbers to words. Examples of sets include:
+        </p>
+        <p>
+            <b>Georg Ferdinand Ludwig Philip Cantor</b> was born in <b>Russia</b> and is known for creating <b>set theory</b>.
+        </p>
+        <img src="pics/george.jpg" alt="Georg Ferdinand Ludwig Philip Cantor" />
+        <ul>
+            <li>{apple, banana, cherry} - A set of different fruits.</li>
+            <li>{1, 2, 3, 4, 5} - A set of the first five positive integers.</li>
+        </ul>
+    </section>
+
+    <section id="set-definitions">
+        <h2>Set Definitions and Notation</h2>
+        <p>
+            A set is simply a collection of distinct items. Each item in the set is called an element. We write sets
+            using curly braces, like <code>{a, b, c}</code>. Here are some easy-to-understand examples:
+        </p>
+        <ul>
+            <li><code>F = {cat, dog, bird}</code> - A set of pets.</li>
+            <li><code>N = {1, 2, 3, 4, 5, 6}</code> - A set of numbers from 1 to 6.</li>
+            <li><code>C = {red, blue, green}</code> - A set of colors.</li>
+            <li><code>M = {apple, orange, banana, ...}</code> - A set of fruits (can continue).</li>
+        </ul>
+        <p>Two sets are equal if they contain exactly the same elements. For example:</p>
+        <ul>
+            <li><code>{x, y, z} = {z, y, x}</code> - Order doesn't matter in sets.</li>
+            <li><code>{1, 1, 2, 3} = {1, 2, 3}</code> - Duplicate elements are not counted more than once.</li>
+        </ul>
+        <p>Set Builder Notation Examples:</p>
+        <ul>
+            <li><code>V = { x | x is a vowel }</code> - The set of vowels (a, e, i, o, u).</li>
+            <li><code>E = { x | x is an even number between 1 and 10 }</code> - The set {2, 4, 6, 8, 10}.</li>
+            <li><code>O = { x | x is an odd number }</code> - The set of all odd numbers.</li>
+        </ul>
+    </section>
+
+    <section id="operations">
+        <h2>Set Operations</h2>
+        <p>Set theory allows for various operations on sets, including:</p>
+        <ul>
+            <li><strong>Union ( ∪ ):</strong> Combines all elements from two sets. For example,<br><br>
+                <code>{1, 2, 3} ∪ {3, 4, 5} = {1, 2, 3, 4, 5}</code>.
+            </li>
+            <li><strong>Intersection ( ∩ ):</strong> Finds elements common to both sets. For example,<br><br>
+                <code>{1, 2, 3} ∩ {2, 3, 4} = {2, 3}</code>.
+            </li>
+            <li><strong>Complement ( Aᶜ ):</strong> Contains all elements not in the set A. For example,<br><br> if U = {1, 2,
+                3, 4, 5} and A = {2, 4}, then <code>Aᶜ = {1, 3, 5}</code>.</li>
+            <li><strong>Difference ( A - B ):</strong> Elements in A that are not in B. For example,<br><br>
+                <code>{1, 2, 3} - {2, 4} = {1, 3}</code>.
+            </li>
+            <li><strong>Symmetric Difference ( A ⊕ B ):</strong> Elements in either A or B, but not in both. For
+                example,<br><br> <code>{1, 2, 3} ⊕ {2, 4, 5} = {1, 3, 4, 5}</code>.</li>
+        </ul>
+    </section>
+
+    <section id="venn-diagram">
+        <h2>Venn Diagram</h2>
+        <p>
+            Venn diagrams were developed by John Venn as a method of using diagrams to illustrate set theory. The
+            Universal
+            Set (U) contains all objects under consideration and is represented using a rectangle.
+        </p>
+        <p>
+            Inside the rectangle, circles or other geometric figures are used to represent sets. Sometimes, points are
+            used
+            to represent the particular elements of the set. Venn diagrams are often used to indicate the relationships
+            between sets.
+        </p>
+        <img src="pics/john venn.jpg" alt="John Venn" />
+        <p><strong>Example:</strong> Draw a Venn diagram that represents V, the set of vowels in the English alphabet:
+        </p>
+        <img src="pics/VOWELS.png" alt="Venn Diagram of Vowels" />
+        <p>
+            Another notation to describe membership in sets uses <code>a ∈ A</code> (element of) and <code>a ∉ A</code>
+            (not
+            an element of).
+        </p>
+        <p>
+            A set with no elements is called the empty set or null set, denoted by <code>∅</code> or <code>{}</code>. A
+            singleton set is a set with exactly one element, e.g., <code>{∅}</code>.
+        </p>
+        <p>
+            The set <code>A</code> is a subset of <code>B</code> if and only if every element of <code>A</code> is also
+            an
+            element of <code>B</code>. This can be expressed as:
+        </p>
+        <div class="subset-info">
+            <div class="subset-text">
+                <ul>
+                    <li><code>A ⊆ B</code> (A is a subset of B)</li>
+                    <li><code>B ⊇ A</code> (B is a superset of A)</li>
+                    <li><code>A ⊂ B</code> (A is a proper/strict subset of B)</li>
+                    <li><code>B ⊃ A</code> (B is a proper/strict superset of A)</li>
+                </ul>
+            </div>
+            <div class="subset-image">
+                <img src="pics/subset and superset.png" alt="Subset and Superset Diagram" />
+            </div>
+        </div>
+        <p>
+            Let <code>S</code> be a set. If there are exactly <code>n</code> distinct elements in <code>S</code>, where
+            <code>n</code> is a nonnegative integer, we<br><br> say that <code>S</code> is a finite set and <code>n</code> is
+            the<br><br>
+            cardinality of <code>S</code>. The cardinality of a set is a measure of the number of elements of the set,
+            denoted<br><br> by <code>|S|</code>. For example, <code>|∅| = 0</code>.
+        </p>
+        <p>
+            A set is said to be infinite if it is not finite. Infinite sets may be countable or uncountable.
+        </p>
+        <!-- Include existing Venn Diagram images here -->
+         <h3>Union ∪</h3>
+        <img src="pics/uniun u.png" alt="Union Diagram" />
+        <h3>Intersection ∩</h3>
+        <img src="pics/intersection.png" alt="Intersection Diagram" />
+        <h3>Complement (A∪B)ᶜ</h3>
+        <img src="pics/comple.png" alt="Complement Diagram" />
+        <h3>Complement Aᶜ</h3>
+        <img src="pics/compe 2nd.png" alt="Complement Diagram" />
+        <h3>Difference (A - B)</h3>
+        <img src="pics/diffe.png" alt="Difference Diagram" />
+        <h3>Symmetric Difference A ⊕ B</h3>
+        <img src="pics/symmet.png" alt="Symmetric Difference Diagram" />
+        <h3>Problems on Set Diagram</h3>
+        <img src="pics/problems.png" alt="Problems on Set Diagram" />
+        <h3>Problems on Set Diagram</h3>
+        <img src="pics/problems 2nd.png" alt="Problems on Set Diagram" />
+
+    </section>
+
+    <section id="laws-of-sets">
+        <h2>Laws of Sets</h2>
+        <div class="law-section">
+            <h3>Commutative Laws</h3>
+            <p><code>A ⋃ B = B ⋃ A</code> - Union is commutative.</p>
+            <p><code>A ⋂ B = B ⋂ A</code> - Intersection is commutative.</p>
+        </div>
+        <div class="law-section">
+            <h3>Associative Laws</h3>
+            <p><code>(A ⋃ B) ⋃ C = A ⋃ (B ⋃ C)</code> - Union is associative.</p>
+            <p><code>(A ⋂ B) ⋂ C = A ⋂ (B ⋂ C)</code> - Intersection is associative.</p>
+        </div>
+        <div class="law-section">
+            <h3>Distributive Laws</h3>
+            <p><code>A ⋃ (B ⋂ C) = (A ⋃ B) ⋂ (A ⋃ C)</code> - Union distributes over intersection.</p>
+            <p><code>A ⋂ (B ⋃ C) = (A ⋂ B) ⋃ (A ⋂ C)</code> - Intersection distributes over union.</p>
+        </div>
+        <div class="law-section">
+            <h3>Identity Laws</h3>
+            <p><code>A ⋃ ⌀ = A</code> - Union with the empty set.</p>
+            <p><code>A ⋂ ᵔ = A</code> - Intersection with the universal set.</p>
+        </div>
+        <div class="law-section">
+            <h3>Inverse Laws</h3>
+            <p><code>A ⋃ AC = ᵔ</code> - Union with its complement is the universal set.</p>
+            <p><code>A ⋂ AC = ⌀</code> - Intersection with its complement is the empty set.</p>
+        </div>
+        <div class="law-section">
+            <h3>Double Complement Law</h3>
+            <p><code>(AC) C = A</code> - The complement of the complement is the original set.</p>
+        </div>
+        <div class="law-section">
+            <h3>Idempotent Laws</h3>
+            <p><code>A ⋃ A = A</code> - Union with itself.</p>
+            <p><code>A ⋂ A = A</code> - Intersection with itself.</p>
+        </div>
+        
+    </section><br><br>
+    <section>
+        <form id="quizForm">
+            <h2>1. What is a set in set theory?</h2>
+            <label><input type="radio" name="q1" value="a"> a collection of distinct objects</label><br>
+            <label><input type="radio" name="q1" value="b"> a collection of numbers only</label><br>
+            <label><input type="radio" name="q1" value="c"> a single number</label><br>
+    
+            <h2>2. What symbol represents union of sets?</h2>
+            <label><input type="radio" name="q2" value="a"> ∩</label><br>
+            <label><input type="radio" name="q2" value="b"> ∪</label><br>
+            <label><input type="radio" name="q2" value="c"> −</label><br>
+    
+            <h2>3. What does the symbol ∅ represent?</h2>
+            <label><input type="radio" name="q3" value="a"> The universal set</label><br>
+            <label><input type="radio" name="q3" value="b"> The empty set</label><br>
+            <label><input type="radio" name="q3" value="c"> A subset</label><br>
+    
+            <h2>4. If A = {1, 2, 3} and B = {2, 3, 4}, what is A ∩ B?</h2>
+            <label><input type="radio" name="q4" value="a"> {1, 4}</label><br>
+            <label><input type="radio" name="q4" value="b"> {2, 3}</label><br>
+            <label><input type="radio" name="q4" value="c"> {1, 2, 3, 4}</label><br>
+    
+            <h2>5. What is a subset?</h2>
+            <label><input type="radio" name="q5" value="a"> A set with no elements</label><br>
+            <label><input type="radio" name="q5" value="b"> A set that contains another set</label><br>
+            <label><input type="radio" name="q5" value="c"> A set where all elements are contained in another
+                set</label><br>
+    
+            <h2>6. What does the symbol ⊆ represent?</h2>
+            <label><input type="radio" name="q6" value="a"> A set being a subset of another set</label><br>
+            <label><input type="radio" name="q6" value="b"> A set being a superset of another set</label><br>
+            <label><input type="radio" name="q6" value="c"> A set being disjoint from another set</label><br>
+    
+            <h2>7. What is the result of {1, 2, 3} ∪ {3, 4, 5}?</h2>
+            <label><input type="radio" name="q7" value="a"> {1, 2, 3, 4, 5}</label><br>
+            <label><input type="radio" name="q7" value="b"> {1, 2, 3}</label><br>
+            <label><input type="radio" name="q7" value="c"> {3, 4, 5}</label><br>
+    
+            <h2>8. Which law states that A ⋃ (B ⋂ C) = (A ⋃ B) ⋂ (A ⋃ C)?</h2>
+            <label><input type="radio" name="q8" value="a"> Commutative Law</label><br>
+            <label><input type="radio" name="q8" value="b"> Distributive Law</label><br>
+            <label><input type="radio" name="q8" value="c"> Associative Law</label><br>
+    
+            <h2>9. What is the complement of A if A = {1, 2} and the universal set U = {1, 2, 3, 4}?</h2>
+            <label><input type="radio" name="q9" value="a"> {1, 2}</label><br>
+            <label><input type="radio" name="q9" value="b"> {3, 4}</label><br>
+            <label><input type="radio" name="q9" value="c"> {2, 3, 4}</label><br>
+    
+            <h2>10. What does the symbol ∩ represent?</h2>
+            <label><input type="radio" name="q10" value="a"> Union</label><br>
+            <label><input type="radio" name="q10" value="b"> Intersection</label><br>
+            <label><input type="radio" name="q10" value="c"> Difference</label><br>
+    
+            <h2>11. What is the result of {2, 3, 4} - {3, 4, 5}?</h2>
+            <label><input type="radio" name="q11" value="a"> {2}</label><br>
+            <label><input type="radio" name="q11" value="b"> {3, 4}</label><br>
+            <label><input type="radio" name="q11" value="c"> {2, 5}</label><br>
+    
+            <h2>12. Which law states that A ⋃ ⌀ = A?</h2>
+            <label><input type="radio" name="q12" value="a"> Identity Law</label><br>
+            <label><input type="radio" name="q12" value="b"> Inverse Law</label><br>
+            <label><input type="radio" name="q12" value="c"> Commutative Law</label><br>
+    
+            <h2>13. What is the result of {1, 2, 3} ⊕ {2, 3, 4}?</h2>
+            <label><input type="radio" name="q13" value="a"> {1, 4}</label><br>
+            <label><input type="radio" name="q13" value="b"> {2, 3}</label><br>
+            <label><input type="radio" name="q13" value="c"> {1, 4, 5}</label><br>
+    
+            <h2>14. What does the symbol ⊃ represent?</h2>
+            <label><input type="radio" name="q14" value="a"> A set being a proper subset of another set</label><br>
+            <label><input type="radio" name="q14" value="b"> A set being a superset of another set</label><br>
+            <label><input type="radio" name="q14" value="c"> A set being a subset of another set</label><br>
+    
+            <h2>15. What is the result of A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)?</h2>
+            <label><input type="radio" name="q15" value="a"> Associative Law</label><br>
+            <label><input type="radio" name="q15" value="b"> Distributive Law</label><br>
+            <label><input type="radio" name="q15" value="c"> Commutative Law</label><br>
+    
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    
+    <section id="report" style="display:none;">
+        <h2>Report</h2>
+        <p id="reportContent"></p>
+    </section>
+    
+    <script src="script.js"></script>
+   
+</body>
+
+</html>
